@@ -14,5 +14,8 @@
     "clean": "bsb -clean-world",
     "start": "bsb -make-world -w",
     "test": "jest"
+  },
+  "dependencies": {
+    "@glennsl/bs-json": "^2.0.0"
   }
 }
