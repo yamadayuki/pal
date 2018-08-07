@@ -1,11 +1,26 @@
 open ChangeCase;
 open Struct;
 
+[@bs.send] external trimEnd : string => string = "trimEnd";
+
+module Modifier = {
+  let genereatedStringToArray = str => Js.String.split("\n", str);
+
+  let trimWhitespace = str =>
+    str
+    |. genereatedStringToArray
+    |. Belt.Array.map(trimEnd)
+    |. Belt.List.fromArray
+    |> String.concat("\n");
+};
+
 module type Template = {let template: Struct.colors => string;};
 
 module ReasonTemplate: Template = {
+  open Modifier;
+
   let componentTemplate = (name, comp) => {
-    let brightnessName = name ++ comp.bright;
+    let brightnessName = camelCase(name) ++ pascalCase(comp.bright);
     let value =
       switch (comp.alpha) {
       | Some(a) =>
@@ -19,9 +34,9 @@ module ReasonTemplate: Template = {
     let name = c.name;
     let moduleName = pascalCase(name);
     let components =
-    c.colors |.
-    Belt.List.map(componentTemplate(name))
-    |> String.concat("\n    ");
+      c.colors
+      |. Belt.List.map(componentTemplate(name))
+      |> String.concat("\n    ");
     {j|
   module $moduleName = {
     $components
@@ -39,6 +54,6 @@ module ReasonTemplate: Template = {
 module Color = {
   $colors
 };
-  |j}
-};
+    |j} |. trimWhitespace;
+  };
 };
