@@ -50,7 +50,7 @@ let int_of_brightness =
   | `bright(x) => x
   | `alpha(x) => x;
 
-module DecodeJson = {
+module Decode = {
   open! Json.Decode;
 
   let component = json => {
@@ -70,10 +70,13 @@ module DecodeJson = {
 module Printer = {
   let component = c => {
     let bright = c.bright;
-    let brightness = brightness_of_string(bright) |> int_of_brightness;
+    let brightness = brightness_of_string(bright);
     let hex = c.hex;
     let alpha = c.alpha;
-    Js.log({j|bright=$bright hex=$hex alpha=$alpha brightness=$brightness|j});
+    let rgba = Color.hex2rgba(~alpha, hex) |> Color.string_of_rgba;
+    Js.log(
+      {j|bright=$bright hex=$hex rgba=$rgba alpha=$alpha brightness=$brightness|j},
+    );
   };
 
   let color = c => {

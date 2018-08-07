@@ -13,7 +13,8 @@
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
     "start": "bsb -make-world -w",
-    "test": "jest"
+    "test": "jest",
+    "exec": "node lib/js/src/Pal.bs.js"
   },
   "dependencies": {
     "@glennsl/bs-json": "^2.0.0"
