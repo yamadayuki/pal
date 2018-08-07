@@ -17,6 +17,7 @@
     "exec": "node lib/js/src/Pal.bs.js"
   },
   "dependencies": {
-    "@glennsl/bs-json": "^2.0.0"
+    "@glennsl/bs-json": "^2.0.0",
+    "change-case": "^3.0.2"
   }
 }
