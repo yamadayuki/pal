@@ -17,6 +17,8 @@ type hsl = {
   l: int,
 };
 
+let string_of_hex = hex => "#" ++ hex;
+
 let string_of_rgba = c => {
   let {r, g, b, a} = c;
   switch (a) {

@@ -44,6 +44,7 @@ describe("pascalCase", () => {
     ("Facebook API", "FacebookApi"),
     ("a-test-again", "ATestAgain"),
     ("a---better__test", "ABetterTest"),
+    ("test", "Test"),
   ];
 
   let runTest = suite => {

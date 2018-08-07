@@ -6,7 +6,8 @@ and component = {
   bright: string,
   hex: string,
   alpha: option(float),
-};
+}
+and colors = array(color);
 
 type brightness = [ | `number(int) | `bright(int) | `alpha(int)];
 
