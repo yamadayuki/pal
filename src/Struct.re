@@ -22,6 +22,8 @@ let inspect = a => {
   a;
 };
 
+exception UnexpectedParsingBrightness;
+
 let parse_brightness = s =>
   switch (
     Js.String.startsWith("Bright", s),
@@ -33,6 +35,7 @@ let parse_brightness = s =>
   | (_, true) =>
     let n = s |> Js.String.sliceToEnd(~from=5) |> int_of_string;
     `alpha(n);
+  | (_, _) => raise(UnexpectedParsingBrightness)
   };
 
 let brightness_of_string = s =>
