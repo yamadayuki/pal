@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.2",
-    "bs-platform": "^4.0.1"
+    "bs-platform": "^4.0.3"
   },
   "keywords": [
     "BuckleScript"
@@ -17,7 +17,7 @@
     "exec": "node lib/js/src/Pal.bs.js"
   },
   "dependencies": {
-    "@glennsl/bs-json": "^2.0.0",
+    "@glennsl/bs-json": "^3.0.0",
     "change-case": "^3.0.2"
   }
 }
